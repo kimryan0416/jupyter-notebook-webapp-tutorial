@@ -19,7 +19,7 @@ jobs:
         run: pip install -U poetry
       
       - name: Install dependencies
-        run: poetry add jupyter-book ipykernel pandas polars altair plotly ghp-import vega_datasets
+        run: poetry install
 
       - name: Build the book
         run: poetry run jupyter-book build myfirstbook
