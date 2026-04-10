@@ -1,0 +1,31 @@
+name: Deploy Jupyter Book
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pip install -U poetry
+      
+      - name: Install dependencies
+        run: poetry add jupyter-book ipykernel pandas polars altair plotly ghp-import vega_datasets
+
+      - name: Build the book
+        run: poetry run jupyter-book build myfirstbook
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/html
