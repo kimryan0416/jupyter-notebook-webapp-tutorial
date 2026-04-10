@@ -22,10 +22,12 @@ jobs:
         run: poetry install
 
       - name: Build the book
-        run: poetry run jupyter-book build myfirstbook
+        run: |
+          cd myfirstbook
+          poetry run jupyter-book build --html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html
+          publish_dir: myfirstbook/_build/html
