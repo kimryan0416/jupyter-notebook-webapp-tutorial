@@ -1,0 +1,9 @@
+streamlit
+streamlit-jupyter
+ipykernel
+pandas
+polars
+altair
+plotly 
+vega_datasets
+nbdev
